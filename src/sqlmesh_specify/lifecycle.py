@@ -11,12 +11,12 @@ from sqlmesh_specify.validate import _extract_ac_lines
 _STATUS_RE = re.compile(r"^\*\*Status:\*\*\s*(?P<status>.+?)\s*$", re.IGNORECASE | re.MULTILINE)
 _AC_ID_RE = re.compile(r"\bAC(?P<num>\d+[A-Za-z]?)\b")
 _REQUIRED_PLAN_SECTIONS = (
-    "## Architecture",
-    "## Files to add",
-    "## Files to modify",
-    "## Files to delete",
-    "## Tests",
-    "## Downstream impact",
+    ("## Architecture",),
+    ("## Files to add",),
+    ("## Files to modify",),
+    ("## Files to delete",),
+    ("## Audits and Tests", "## Tests"),
+    ("## Downstream impact",),
 )
 _SPEC_STATUSES = frozenset({"draft", "approved", "shipped", "superseded"})
 _PLAN_STATUSES = frozenset({"proposed", "approved", "superseded"})
@@ -159,8 +159,9 @@ def _validate_plan(
             target_dir=target_dir,
         )
     )
-    for section in _REQUIRED_PLAN_SECTIONS:
-        if section.lower() not in plan_text.lower():
+    for section_options in _REQUIRED_PLAN_SECTIONS:
+        if not any(section.lower() in plan_text.lower() for section in section_options):
+            section = section_options[0]
             findings.append(
                 Finding(
                     "error",

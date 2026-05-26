@@ -41,7 +41,7 @@ def write_lifecycle(
         "## Files to add\nAC1\n"
         "## Files to modify\nAC1\n"
         "## Files to delete\nAC1\n"
-        "## Tests\nAC1\n"
+        "## Audits and Tests\nAC1\n"
         "## Downstream impact\nAC1\n"
     )
     (spec_dir / "tasks.md").write_text(
