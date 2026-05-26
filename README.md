@@ -4,8 +4,16 @@ AI SDLC and durable memory for SQLMesh teams: specs are contracts, SQLMesh plans
 
 ## Install
 
+After the first PyPI release:
+
 ```bash
 uvx --from sqlmesh-spec-kit sqlmesh-specify --help
+```
+
+Before PyPI release, install directly from this repository:
+
+```bash
+uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify --help
 ```
 
 ## Initialize
@@ -21,6 +29,19 @@ sqlmesh-specify report --target . --format markdown
 ```
 
 Supported engine presets: `duckdb`, `snowflake`, `databricks`, `bigquery`, `trino`, `redshift`, `postgres`, `mysql`, `mssql`, `athena`, `spark`, and `clickhouse`.
+
+## Verified SQLMesh Example
+
+The full SDLC flow has been tested against the official SQLMesh examples repository:
+
+```bash
+git clone https://github.com/TobikoData/sqlmesh-examples.git
+cd sqlmesh-examples/001_sushi/2_moderate
+uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify init sushi-moderate --engine duckdb --target .
+uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify ci --target .
+```
+
+For the complete spec, plan, tasks, implementation, SQLMesh test, and `sqlmesh plan dev --auto-apply --no-prompts` flow, follow [Tutorial 02](docs/tutorials/02-ship-a-sqlmesh-change.md).
 
 ## Workflow
 

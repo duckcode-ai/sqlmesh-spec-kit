@@ -1,5 +1,17 @@
 # Tutorial Series
 
+Install from PyPI after release:
+
+```bash
+uvx --from sqlmesh-spec-kit sqlmesh-specify --help
+```
+
+Until the first release is published, run the tutorials directly from GitHub:
+
+```bash
+uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify --help
+```
+
 1. [Initialize a SQLMesh repo](01-initialize-a-sqlmesh-repo.md)
 2. [Ship a SQLMesh change](02-ship-a-sqlmesh-change.md)
 3. [Brownfield enterprise adoption](03-brownfield-enterprise-adoption.md)
