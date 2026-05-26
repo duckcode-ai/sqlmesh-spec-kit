@@ -1,0 +1,26 @@
+# {{ project_name }} AI SDLC Context
+
+This is a SQLMesh project using sqlmesh-spec-kit.
+
+- Engine preset: `{{ engine }}`
+- Durable memory lives in `.sqlmesh-specify/`
+- Approved work lives in `specs/<NNN>-<slug>/`
+
+## Rules for Agents
+
+1. Read `.sqlmesh-specify/constitution.md` before planning or editing.
+2. Do not implement from a draft spec.
+3. Do not create `tasks.md` until `plan.md` has exact status `approved`.
+4. Implement only files listed in the approved plan.
+5. Capture SQLMesh plan, audit, test, apply, or promote evidence before review.
+6. Stop on unexpected backfill, restatement, forward-only behavior, or files outside the approved plan.
+
+## Common Commands
+
+```bash
+sqlmesh-specify doctor --target .
+sqlmesh-specify validate project --target .
+sqlmesh-specify validate sqlmesh --target .
+sqlmesh-specify report --target . --format markdown
+sqlmesh plan dev
+```

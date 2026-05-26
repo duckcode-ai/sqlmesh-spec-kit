@@ -1,0 +1,7 @@
+test_example:
+  model: sushi.example
+  inputs: {}
+  outputs:
+    query:
+      rows:
+        - id: 1

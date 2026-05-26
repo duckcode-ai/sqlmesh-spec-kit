@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: uv run --extra dev ruff check src tests
+      - run: uv run --extra dev mypy src tests
+      - run: uv run --extra dev pytest
+      - run: uv run --extra dev python -m build --sdist --wheel
+      - run: uv run --extra dev python -m twine check dist/*
+      - name: Check sdist exclusions
+        run: |
+          python - <<'PY'
+          import tarfile
+          from pathlib import Path
+          sdist = next(Path("dist").glob("*.tar.gz"))
+          with tarfile.open(sdist) as tar:
+              names = tar.getnames()
+          forbidden = [
+              name
+              for name in names
+              if "/.git/" in name
+              or name.endswith(("/PLAN.md", "/FOLLOWUP.md", "/QUESTIONS.md", "/BUILD-SUMMARY.md"))
+          ]
+          if forbidden:
+              raise SystemExit(f"forbidden paths in sdist: {forbidden}")
+          PY

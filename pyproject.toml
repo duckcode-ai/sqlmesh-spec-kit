@@ -1,0 +1,104 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sqlmesh-spec-kit"
+version = "0.1.0"
+description = "Enterprise AI SDLC toolkit for SQLMesh projects, with spec-driven workflows, CI validation, and engine-specific presets."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+authors = [
+    { name = "duckcode-ai", email = "open-source@duckcode.ai" }
+]
+keywords = [
+    "sqlmesh",
+    "spec-driven-development",
+    "ai-agents",
+    "analytics-engineering",
+    "data-engineering",
+    "sdlc",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.2",
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "twine>=5.0",
+    "types-PyYAML",
+]
+
+[project.scripts]
+sqlmesh-specify = "sqlmesh_specify.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/duckcode-ai/sqlmesh-spec-kit"
+Repository = "https://github.com/duckcode-ai/sqlmesh-spec-kit"
+Issues = "https://github.com/duckcode-ai/sqlmesh-spec-kit/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sqlmesh_specify"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"memory" = "sqlmesh_specify/_assets/memory"
+"templates" = "sqlmesh_specify/_assets/templates"
+"presets" = "sqlmesh_specify/_assets/presets"
+"skills" = "sqlmesh_specify/_assets/skills"
+"commands" = "sqlmesh_specify/_assets/commands"
+"agents" = "sqlmesh_specify/_assets/agents"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "/.git",
+    "/.github",
+    "/.mypy_cache",
+    "/.pytest_cache",
+    "/.ruff_cache",
+    "/.venv",
+    "/build",
+    "/dist",
+    "/htmlcov",
+    "/.coverage",
+    "/.coverage.*",
+    "/BUILD-SUMMARY.md",
+    "/FOLLOWUP.md",
+    "/PLAN.md",
+    "/QUESTIONS.md",
+    "/uv.lock",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP", "B", "A", "C4", "RET", "SIM"]
+ignore = []
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --cov=sqlmesh_specify --cov-report=term-missing"

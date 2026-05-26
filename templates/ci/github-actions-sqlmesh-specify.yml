@@ -1,0 +1,14 @@
+name: sqlmesh-specify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v4
+      - run: uvx --from sqlmesh-spec-kit sqlmesh-specify ci --target .
