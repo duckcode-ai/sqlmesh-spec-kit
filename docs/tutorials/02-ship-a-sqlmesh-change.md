@@ -11,14 +11,14 @@ cd sqlmesh-examples/001_sushi/2_moderate
 
 ## 2. Initialize sqlmesh-spec-kit
 
-After PyPI release:
+Install from PyPI first:
 
 ```bash
 sqlmesh-specify init sushi-moderate --engine duckdb --target .
 sqlmesh-specify doctor --target .
 ```
 
-Before PyPI release, run the same commands directly from GitHub:
+To test unreleased changes from `main`, run the same commands directly from GitHub:
 
 ```bash
 uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify init sushi-moderate --engine duckdb --target .

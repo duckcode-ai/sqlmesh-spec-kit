@@ -4,13 +4,13 @@ AI SDLC and durable memory for SQLMesh teams: specs are contracts, SQLMesh plans
 
 ## Install
 
-After the first PyPI release:
+Install from PyPI:
 
 ```bash
 uvx --from sqlmesh-spec-kit sqlmesh-specify --help
 ```
 
-Before PyPI release, install directly from this repository:
+To test unreleased changes from `main`, install directly from this repository:
 
 ```bash
 uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify --help

@@ -1,12 +1,12 @@
 # Tutorial Series
 
-Install from PyPI after release:
+Install from PyPI:
 
 ```bash
 uvx --from sqlmesh-spec-kit sqlmesh-specify --help
 ```
 
-Until the first release is published, run the tutorials directly from GitHub:
+To test unreleased changes from `main`, run the tutorials directly from GitHub:
 
 ```bash
 uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify --help

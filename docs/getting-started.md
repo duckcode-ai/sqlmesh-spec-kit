@@ -2,13 +2,13 @@
 
 ## Install
 
-After the first PyPI release:
+Install from PyPI:
 
 ```bash
 uvx --from sqlmesh-spec-kit sqlmesh-specify --help
 ```
 
-Before PyPI release, install directly from GitHub:
+To test unreleased changes from `main`, install directly from GitHub:
 
 ```bash
 uvx --from git+https://github.com/duckcode-ai/sqlmesh-spec-kit.git sqlmesh-specify --help
